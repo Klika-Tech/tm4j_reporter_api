@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="TM4J Reporter API",
+    name="TM4JReporterAPI",
     description="python package providing functionality for Jira Test Management (tm4j) Cloud through REST API calls",
     long_description=long_description,
     long_description_content_type="text/markdown",

@@ -1,11 +1,12 @@
 import os
 
 
-class Configuration(object):
+class TM4JConfiguration(object):
     """
     Main configuration object.
     Requires API_ACCESS_KEY, TM4J_API_URL, PROJECT_KEY to be defined in environment.
     """
+
     def __init__(self):
         self._check_required_keys_exist()
         self.api_access_key = os.environ["API_ACCESS_KEY"]
@@ -29,11 +30,9 @@ class Configuration(object):
             except KeyError as e:
                 missing_keys.append(e.args[0])
         if missing_keys:
-            raise NameError(
-                f"Environment variables missing: {' ,'.join(missing_keys)}"
-            )
+            raise NameError(f"Environment variables missing: {' ,'.join(missing_keys)}")
 
         return None
 
 
-CONFIG = Configuration()
+CONFIG = TM4JConfiguration()
