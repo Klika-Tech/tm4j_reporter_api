@@ -10,9 +10,7 @@ class TM4JResponseException(Exception):
         self.message = message
 
 
-def check_tm4j_api_response(
-    response: requests.models.Response, expected_status_code: int = 201
-) -> None:
+def check_tm4j_api_response(response: requests.models.Response, expected_status_code: int = 201) -> None:
     """
     Checking response from TM4J API
 
@@ -31,8 +29,7 @@ def check_tm4j_api_response(
         assert response.status_code == expected_status_code
     except AssertionError:
         raise TM4JResponseException(
-            f"Response status code: {response.status_code},\n"
-            f"response message: {response.text}"
+            f"Response status code: {response.status_code},\nresponse message: {response.text}"
         )
     finally:
         return None
