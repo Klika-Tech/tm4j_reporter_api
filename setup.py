@@ -13,7 +13,9 @@ setuptools.setup(
     author="Yury Kuptsou",
     author_email="ykuptsou@klika-tech.com",
     license="MIT",
-    packages=setuptools.find_packages(),
+    packages=[
+        "tm4j_reporter_api.tm4j_api", "tm4j_reporter_api.tm4j_configuration", "tm4j_reporter_api.tm4j_exceptions"
+    ],
     platforms="any",
     python_requires=">=3.7",
     install_requires=["requests"],
