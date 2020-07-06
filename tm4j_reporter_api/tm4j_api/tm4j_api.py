@@ -2,12 +2,33 @@ from typing import List, Dict
 
 import requests
 
-from tm4j_configuration.tm4j_configuration import CONFIG
-from tm4j_exceptions import tm4j_response_exceptions
+from tm4j_reporter_api.tm4j_configuration import tm4j_configuration
+from tm4j_reporter_api.tm4j_exceptions import tm4j_configuration_exceptions, tm4j_response_exceptions
 
-TM4J_API_URL = CONFIG.tm4j_api_url
-PROJECT_KEY = CONFIG.project_key
-AUTH_HEADER = {"Authorization": f"Bearer {CONFIG.api_access_key}"}
+CONFIG = None
+AUTH_HEADER = None
+
+
+def configure_tm4j_api(api_access_key: str, project_key: str) -> None:
+    """
+    Creates TM4J configuration object to encapsulate API access and project keys.
+    Must be called before API calls.
+
+    :param api_access_key: TM4J API access key
+    :type api_access_key: str
+
+    :param project_key: TM4J project key
+    :type project_key: str
+
+    :return: None
+    :rtype: None
+    """
+    global CONFIG
+    global AUTH_HEADER
+    CONFIG = tm4j_configuration.TM4JConfiguration(api_access_key=api_access_key, project_key=project_key)
+    AUTH_HEADER = {"Authorization": f"Bearer {CONFIG.api_access_key}"}
+
+    return None
 
 
 def create_test_cycle(
@@ -48,11 +69,18 @@ def create_test_cycle(
     :param owner_id: Atlassian Account ID of the owner of the test cycle
     :type owner_id: str
 
+    :raise TM4JConfigurationException: if method configure_tm4j was not called before calling API operation
+
     :return: TM4J test cycle key
     :rtype str
     """
+    if not CONFIG:
+        raise tm4j_configuration_exceptions.TM4JConfigurationException(
+            "You must configure TM4J reporter API before calling TM4J, call tm4j_api.configure_tm4j_api method first"
+        )
+
     payload = {
-        "projectKey": PROJECT_KEY,
+        "projectKey": CONFIG.project_key,
         "name": test_cycle_name,
         "description": description,
         "plannedStartDate": planned_start_date,
@@ -63,7 +91,7 @@ def create_test_cycle(
         "ownerId": owner_id,
     }
 
-    response = requests.post(url=f"{TM4J_API_URL}/testcycles", json=payload, headers=AUTH_HEADER)
+    response = requests.post(url="https://api.adaptavist.io/tm4j/v2/testcycles", json=payload, headers=AUTH_HEADER)
 
     tm4j_response_exceptions.check_tm4j_api_response(response=response)
 
@@ -117,11 +145,18 @@ def create_test_execution_result(
     :param comment: Comment against the overall test execution
     :type comment: str
 
+    :raise TM4JConfigurationException: if method configure_tm4j was not called before calling API operation
+
     :return: None
     :rtype: None
     """
+    if not CONFIG:
+        raise tm4j_configuration_exceptions.TM4JConfigurationException(
+            "You must configure TM4J reporter API before calling TM4J, call tm4j_api.configure_tm4j_api method first"
+        )
+
     payload = {
-        "projectKey": PROJECT_KEY,
+        "projectKey": CONFIG.project_key,
         "testCaseKey": test_case_key,
         "testCycleKey": test_cycle_key,
         "statusName": execution_status,
@@ -134,7 +169,7 @@ def create_test_execution_result(
         "comment": comment,
     }
 
-    response = requests.post(url=f"{TM4J_API_URL}/testexecutions", json=payload, headers=AUTH_HEADER)
+    response = requests.post(url="https://api.adaptavist.io/tm4j/v2/testexecutions", json=payload, headers=AUTH_HEADER)
 
     tm4j_response_exceptions.check_tm4j_api_response(response=response)
 
