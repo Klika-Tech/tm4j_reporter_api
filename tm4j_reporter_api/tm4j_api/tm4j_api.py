@@ -61,7 +61,7 @@ def create_test_cycle(
     :type jira_project_version: int
 
     :param status_name: Name of a status configured for the project
-    :type status_name: int
+    :type status_name: str
 
     :param folder_id: ID of a folder to place the test cycle within
     :type folder_id: int
@@ -124,7 +124,8 @@ def create_test_execution_result(
     :type execution_status: str
 
     :param test_script_results: List of objects with test steps results:
-        statusName (str), actualEndDate (str, yyyy-MM-dd'T'HH:mm:ss'Z'), actualResult (str)
+        statusName (str), actualEndDate (str, yyyy-MM-dd'T'HH:mm:ss'Z'), actualResult (str).
+        Number of objects should match to steps number in TM4J test script.
     :type test_script_results: List[Dict[str, str]]
 
     :param actual_end_date: Date test was executed. Format: yyyy-MM-dd'T'HH:mm:ss'Z'
