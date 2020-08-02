@@ -9,7 +9,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     version="v0.1.0",
-    url="https://gitlab.klika-tech.com/qa/tm4j_reporter_api",
+    url="https://github.com/Klika-Tech/tm4j_reporter_api",
     author="Yury Kuptsou",
     author_email="ykuptsou@klika-tech.com",
     license="MIT",

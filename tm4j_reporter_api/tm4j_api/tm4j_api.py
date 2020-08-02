@@ -72,7 +72,7 @@ def create_test_cycle(
     :raise TM4JConfigurationException: if method configure_tm4j was not called before calling API operation
 
     :return: TM4J test cycle key
-    :rtype str
+    :rtype: str
     """
     if not CONFIG:
         raise tm4j_configuration_exceptions.TM4JConfigurationException(
