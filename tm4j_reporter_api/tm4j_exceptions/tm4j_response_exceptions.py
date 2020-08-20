@@ -29,5 +29,5 @@ def check_tm4j_api_response(response: requests.models.Response, expected_status_
         assert response.status_code == expected_status_code
     except AssertionError:
         raise TM4JResponseException(f"Response status code: {response.status_code}, response message: {response.text}")
-    finally:
-        return None
+
+    return None
