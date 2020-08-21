@@ -9,7 +9,7 @@ Package providing TM4J Cloud REST API for test automation integration.
     # PyPi
     pip install tm4j-reporter-api
     # Git
-    pip install git+ssh://git@github.com:Klika-Tech/tm4j_reporter_api.git
+    pip install git+https://github.com/Klika-Tech/tm4j_reporter_api.git
     
 # Configure
 In order to use TM4J Cloud REST API, you need to configure TM4J reporter with `tm4j_api.configure_tm4j_api` function first:
