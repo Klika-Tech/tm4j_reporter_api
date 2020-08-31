@@ -1,3 +1,7 @@
+# Copyright (C) 2020 Klika Tech, Inc. or its affiliates.  All Rights Reserved.
+# Use of this source code is governed by an MIT-style license that can be found in the LICENSE file
+# or at https://opensource.org/licenses/MIT.
+
 import setuptools
 
 with open("README.md", "r") as fh:
@@ -10,8 +14,8 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     version="v0.1.1",
     url="https://github.com/Klika-Tech/tm4j_reporter_api",
-    author="Yury Kuptsou",
-    author_email="ykuptsou@klika-tech.com",
+    author="Klika-Tech, Inc",
+    author_email="",
     license="MIT",
     packages=[
         "tm4j_reporter_api.tm4j_api", "tm4j_reporter_api.tm4j_configuration", "tm4j_reporter_api.tm4j_exceptions"
