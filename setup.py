@@ -12,10 +12,10 @@ setuptools.setup(
     description="python package providing functionality for Jira Test Management (tm4j) Cloud through REST API calls",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    version="v0.1.1",
+    version="v0.1.2",
     url="https://github.com/Klika-Tech/tm4j_reporter_api",
     author="Klika-Tech, Inc",
-    author_email="",
+    author_email="contact@klika-tech.com",
     license="MIT",
     packages=[
         "tm4j_reporter_api.tm4j_api", "tm4j_reporter_api.tm4j_configuration", "tm4j_reporter_api.tm4j_exceptions"
